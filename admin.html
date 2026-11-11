@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard</title>
+  <meta name="robots" content="noindex, nofollow" />
+
+  <!-- Cached site title -->
+  <script>
+  (function(){try{var m=JSON.parse(localStorage.getItem('siteMeta'));if(m&&m.site_name)document.title='Admin | '+m.site_name}catch(e){}})();
+  </script>
+
+  <!-- Preconnect hints -->
+  <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
+  <link rel="preconnect" href="https://idvqbntofuaxryuyeqmt.supabase.co" />
+
+  <!-- Tailwind (pre-compiled) -->
+  <link rel="stylesheet" href="css/tailwind-output.css" />
+
+  <!-- Admin body overrides -->
+  <style>
+    body { overflow: hidden; height: 100vh; }
+  </style>
+
+  <!-- Google Fonts (non-blocking) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" /></noscript>
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+
+<body class="antialiased">
+
+  <!-- ===== LOGIN SCREEN ===== -->
+  <!-- Page Loader -->
+  <div id="page-loader" class="fixed inset-0 z-50 bg-surface flex items-center justify-center">
+    <div class="code-loader" style="height:auto">
+      <svg viewBox="0 0 100 100">
+        <line class="bracket-seg seg-1" x1="35" y1="20" x2="10" y2="50" />
+        <line class="bracket-seg seg-2" x1="10" y1="50" x2="35" y2="80" />
+        <line class="bracket-seg seg-3" x1="65" y1="20" x2="90" y2="50" />
+        <line class="bracket-seg seg-4" x1="90" y1="50" x2="65" y2="80" />
+      </svg>
+    </div>
+  </div>
+
+  <div id="login-screen" class="min-h-screen flex items-center justify-center px-4 hidden">
+    <div class="w-full max-w-xs">
+      <div class="text-center mb-6">
+        <span id="login-logo" class="font-display text-3xl text-accent-orange"><span class="text-white">.</span></span>
+        <h1 class="font-display text-xl text-white mt-3 uppercase tracking-wider">Admin Dashboard</h1>
+        <p class="text-text-muted text-xs mt-1.5">Sign in to manage your portfolio</p>
+      </div>
+      <form id="login-form" class="admin-form space-y-3">
+        <div>
+          <label for="login-email">Email</label>
+          <input type="email" id="login-email" placeholder="admin@example.com" required />
+        </div>
+        <div>
+          <label for="login-password">Password</label>
+          <input type="password" id="login-password" placeholder="Your password" required />
+        </div>
+        <p id="login-error" class="text-red-500 text-xs hidden"></p>
+        <button type="submit" class="w-full py-2.5 rounded-lg font-semibold text-white gradient-orange hover:opacity-90 transition-opacity text-sm">
+          Sign In
+        </button>
+        <p class="text-center mt-3">
+          <a href="#" id="forgot-link" class="text-accent-orange hover:text-accent-orange-hover text-xs transition-colors">Forgot Password?</a>
+        </p>
+      </form>
+    </div>
+  </div>
+
+  <!-- Forgot Password Screen -->
+  <div id="forgot-screen" class="min-h-screen flex items-center justify-center px-4 hidden">
+    <div class="w-full max-w-xs">
+      <div class="text-center mb-6">
+        <span id="forgot-logo" class="font-display text-3xl text-accent-orange"><span class="text-white">.</span></span>
+        <h1 class="font-display text-xl text-white mt-3 uppercase tracking-wider">Reset Password</h1>
+        <p class="text-text-muted text-xs mt-1.5">We'll send you a password reset link</p>
+      </div>
+      <form id="forgot-form" class="admin-form space-y-3">
+        <div>
+          <label for="forgot-email">Email</label>
+          <input type="email" id="forgot-email" placeholder="admin@example.com" required />
+        </div>
+        <p id="forgot-error" class="text-red-500 text-xs hidden"></p>
+        <button type="submit" class="w-full py-2.5 rounded-lg font-semibold text-white gradient-orange hover:opacity-90 transition-opacity text-sm">
+          Send Reset Link
+        </button>
+        <p class="text-center mt-3">
+          <a href="#" id="back-to-login" class="text-accent-orange hover:text-accent-orange-hover text-xs transition-colors">Back to Sign In</a>
+        </p>
+      </form>
+      <p id="forgot-success" class="text-green-400 text-sm text-center hidden">Check your email for a password reset link.</p>
+    </div>
+  </div>
+
+  <!-- Reset Password Screen (after clicking email link) -->
+  <div id="reset-screen" class="min-h-screen flex items-center justify-center px-4 hidden">
+    <div class="w-full max-w-xs">
+      <div class="text-center mb-6">
+        <span id="reset-logo" class="font-display text-3xl text-accent-orange"><span class="text-white">.</span></span>
+        <h1 class="font-display text-xl text-white mt-3 uppercase tracking-wider">Set New Password</h1>
+        <p class="text-text-muted text-xs mt-1.5">Enter your new password below</p>
+      </div>
+      <form id="reset-form" class="admin-form space-y-3">
+        <div>
+          <label for="reset-password">New Password</label>
+          <input type="password" id="reset-password" placeholder="New password" minlength="6" required />
+        </div>
+        <div>
+          <label for="reset-password-confirm">Confirm Password</label>
+          <input type="password" id="reset-password-confirm" placeholder="Confirm new password" minlength="6" required />
+        </div>
+        <p id="reset-error" class="text-red-500 text-xs hidden"></p>
+        <button type="submit" class="w-full py-2.5 rounded-lg font-semibold text-white gradient-orange hover:opacity-90 transition-opacity text-sm">
+          Update Password
+        </button>
+      </form>
+      <p id="reset-success" class="text-green-400 text-sm text-center hidden">Password updated! Redirecting to dashboard...</p>
+    </div>
+  </div>
+
+  <!-- ===== DASHBOARD ===== -->
+  <div id="dashboard" class="hidden h-screen flex flex-col">
+    <!-- Top Bar -->
+    <header class="sticky top-0 z-40 bg-surface-card/95 backdrop-blur-xl border-b border-border px-3 sm:px-4 py-2">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <button id="sidebar-toggle" class="p-1.5 rounded-md text-text-secondary hover:text-white hover:bg-surface-hover transition-colors">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" /></svg>
+          </button>
+          <span id="admin-logo" class="font-display text-xl text-accent-orange"><span class="text-white">.</span></span>
+          <span class="text-text-muted text-xs hidden sm:inline">/ Admin</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <a href="index.html" class="text-text-secondary hover:text-white text-xs transition-colors hidden sm:inline-flex items-center gap-1" target="_blank">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" /></svg>
+            View Site
+          </a>
+          <button id="logout-btn" class="admin-btn admin-btn-secondary text-xs">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9" /></svg>
+            <span class="hidden sm:inline">Logout</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <div class="flex flex-1 overflow-hidden">
+      <!-- Sidebar -->
+      <aside id="admin-sidebar" class="admin-sidebar flex-shrink-0">
+        <div class="admin-sidebar-inner p-2 flex flex-col gap-0.5">
+          <button data-tab="profile" class="admin-tab active">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" /><circle cx="12" cy="7" r="4" /></svg>
+            <span>Profile</span>
+          </button>
+          <button data-tab="services" class="admin-tab">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h6v6h-6z" /></svg>
+            <span>Services</span>
+          </button>
+          <button data-tab="projects" class="admin-tab">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" /></svg>
+            <span>Projects</span>
+          </button>
+          <button data-tab="skills" class="admin-tab">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M18 20V10M12 20V4M6 20v-6" /></svg>
+            <span>Skills</span>
+          </button>
+          <button data-tab="tools" class="admin-tab">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M16 18l6-6-6-6M8 6l-6 6 6 6" /></svg>
+            <span>Tools</span>
+          </button>
+          <button data-tab="experience" class="admin-tab">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M20 7H4a2 2 0 00-2 2v10a2 2 0 002 2h16a2 2 0 002-2V9a2 2 0 00-2-2z" /><path stroke-linecap="round" stroke-linejoin="round" d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2" /></svg>
+            <span>Experience</span>
+          </button>
+          <button data-tab="education" class="admin-tab">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 19.5A2.5 2.5 0 016.5 17H20M4 19.5V5a2 2 0 012-2h14v14H6.5a2.5 2.5 0 00-2.5 2.5z" /></svg>
+            <span>Education</span>
+          </button>
+          <button data-tab="certifications" class="admin-tab">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+            <span>Certs</span>
+          </button>
+          <button data-tab="social" class="admin-tab">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" /></svg>
+            <span>Social</span>
+          </button>
+          <button data-tab="metadata" class="admin-tab">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9.568 3H5.25A2.25 2.25 0 003 5.25v4.318c0 .597.237 1.17.659 1.591l9.581 9.581c.699.699 1.78.872 2.607.33a18.095 18.095 0 005.223-5.223c.542-.827.369-1.908-.33-2.607L11.16 3.66A2.25 2.25 0 009.568 3z" /><path stroke-linecap="round" stroke-linejoin="round" d="M6 6h.008v.008H6V6z" /></svg>
+            <span>SEO</span>
+          </button>
+        </div>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="flex-1 p-3 sm:p-4 lg:p-6 overflow-x-hidden overflow-y-auto flex flex-col">
+        <div id="admin-content" class="flex-1 flex flex-col"></div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Toast container -->
+  <div id="toast-container"></div>
+
+  <script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+  <script defer src="js/supabase-config.js"></script>
+  <script defer src="js/supabase-data.js"></script>
+  <script defer src="js/admin/admin.js"></script>
+
+</body>
+</html>

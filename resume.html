@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title></title>
+  <meta name="description" content="" />
+
+  <meta property="og:title" content="" />
+  <meta property="og:description" content="" />
+  <meta property="og:type" content="website" />
+
+  <!-- Cached site title -->
+  <script>
+  (function(){try{var m=JSON.parse(localStorage.getItem('siteMeta'));if(m&&m.title)document.title=m.title}catch(e){}})();
+  </script>
+
+  <!-- Preconnect hints -->
+  <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
+  <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com" />
+  <link rel="preconnect" href="https://idvqbntofuaxryuyeqmt.supabase.co" />
+
+  <!-- Tailwind (pre-compiled) -->
+  <link rel="stylesheet" href="css/tailwind-output.css" />
+
+  <!-- Google Fonts (non-blocking) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" /></noscript>
+
+  <!-- AOS (non-blocking) -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet" media="print" onload="this.media='all'" />
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+
+<body class="antialiased">
+
+  <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:bg-accent-orange focus:text-white focus:px-4 focus:py-2 focus:rounded-lg">Skip to main content</a>
+
+  <!-- ===== NAVBAR ===== -->
+  <header id="navbar" class="fixed top-0 left-0 right-0 z-50 py-2 md:py-4 transition-all duration-300"></header>
+
+  <!-- Page Loader -->
+  <div id="page-loader" class="fixed inset-0 z-50 bg-surface flex items-center justify-center"></div>
+
+  <main id="main-content" class="pt-20 md:pt-28">
+
+    <!-- ===== PAGE HEADER ===== -->
+    <section class="py-12 md:py-20 px-4 sm:px-6">
+      <div class="max-w-6xl mx-auto text-center">
+        <p class="font-mono text-xs tracking-[0.3em] text-accent-cyan uppercase mb-3" data-aos="fade-down">Career Overview</p>
+        <h1 class="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-white uppercase" data-aos="fade-up">My Resume</h1>
+      </div>
+    </section>
+
+    <!-- ===== SUMMARY ===== -->
+    <section class="py-8 md:py-12 px-4 sm:px-6">
+      <div class="max-w-6xl mx-auto">
+        <div id="resume-summary" class="bg-surface-card border border-border rounded-2xl p-8 md:p-12 relative overflow-hidden" data-aos="fade-up">
+          <div class="absolute top-0 right-0 w-48 h-48 bg-accent-orange/5 rounded-full blur-3xl"></div>
+          <div id="resume-summary-content" class="relative z-10 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== EXPERIENCE ===== -->
+    <section class="py-16 md:py-24 px-4 sm:px-6">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-14" data-aos="fade-up">
+          <p class="font-mono text-xs tracking-[0.3em] text-accent-cyan uppercase mb-3">Career Path</p>
+          <h2 class="font-display text-4xl md:text-5xl lg:text-6xl text-white uppercase">Experience</h2>
+        </div>
+
+        <!-- Timeline -->
+        <div class="relative">
+          <!-- Timeline center line -->
+          <div class="hidden lg:block absolute left-1/2 top-0 bottom-0 w-0.5 bg-border -translate-x-1/2"></div>
+          <!-- Mobile left line -->
+          <div class="lg:hidden absolute left-5 top-0 bottom-0 w-0.5 bg-border"></div>
+
+          <div id="experience-timeline" class="space-y-12">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== EDUCATION ===== -->
+    <section class="py-16 md:py-24 px-4 sm:px-6">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-14" data-aos="fade-up">
+          <p class="font-mono text-xs tracking-[0.3em] text-accent-cyan uppercase mb-3">Academic Background</p>
+          <h2 class="font-display text-4xl md:text-5xl lg:text-6xl text-white uppercase">Education</h2>
+        </div>
+
+        <div id="education-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== SKILLS ===== -->
+    <section class="py-16 md:py-24 px-4 sm:px-6">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-14" data-aos="fade-up">
+          <p class="font-mono text-xs tracking-[0.3em] text-accent-cyan uppercase mb-3">Competencies</p>
+          <h2 class="font-display text-4xl md:text-5xl lg:text-6xl text-white uppercase">Skills</h2>
+        </div>
+
+        <div id="resume-skills-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CERTIFICATIONS ===== -->
+    <section class="py-16 md:py-24 px-4 sm:px-6">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-14" data-aos="fade-up">
+          <p class="font-mono text-xs tracking-[0.3em] text-accent-cyan uppercase mb-3">Achievements</p>
+          <h2 class="font-display text-4xl md:text-5xl lg:text-6xl text-white uppercase">Certifications</h2>
+        </div>
+
+        <div id="certifications-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer id="site-footer" class="border-t border-border mt-8"></footer>
+
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+  <script defer src="js/supabase-config.js"></script>
+  <script defer src="js/supabase-data.js"></script>
+  <script defer src="js/main.js"></script>
+  <script defer src="js/pages/resume.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>404 — Page Not Found</title>
+  <meta name="description" content="The page you're looking for doesn't exist." />
+
+  <!-- Cached site title -->
+  <script>
+  (function(){try{var m=JSON.parse(localStorage.getItem('siteMeta'));if(m&&m.title)document.title=m.title}catch(e){}})();
+  </script>
+
+  <!-- Preconnect hints -->
+  <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
+  <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com" />
+  <link rel="preconnect" href="https://idvqbntofuaxryuyeqmt.supabase.co" />
+
+  <!-- Tailwind (pre-compiled) -->
+  <link rel="stylesheet" href="css/tailwind-output.css" />
+
+  <!-- Google Fonts (non-blocking) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" /></noscript>
+
+  <!-- AOS (non-blocking) -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet" media="print" onload="this.media='all'" />
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+
+<body class="antialiased">
+
+  <!-- Skip to Content -->
+  <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:bg-accent-orange focus:text-white focus:px-4 focus:py-2 focus:rounded-lg">
+    Skip to main content
+  </a>
+
+  <!-- ===== NAVBAR ===== -->
+  <header id="navbar" class="fixed top-0 left-0 right-0 z-50 py-2 md:py-4 transition-all duration-300"></header>
+
+  <main id="main-content">
+
+    <!-- ===== 404 CONTENT ===== -->
+    <section class="min-h-screen flex flex-col items-center justify-center text-center px-4 sm:px-6 relative">
+      <!-- Background Accents -->
+      <div class="absolute top-1/3 right-1/4 w-72 h-72 bg-accent-orange/5 rounded-full blur-3xl"></div>
+      <div class="absolute bottom-1/3 left-1/4 w-72 h-72 bg-accent-cyan/5 rounded-full blur-3xl"></div>
+
+      <div class="relative z-10" data-aos="fade-up">
+        <p class="font-mono text-xs sm:text-sm tracking-[0.3em] text-accent-cyan uppercase mb-6">Error</p>
+        <h1 class="font-display text-[8rem] sm:text-[10rem] md:text-[12rem] leading-none gradient-text-orange mb-2">404</h1>
+        <h2 class="font-display text-3xl sm:text-4xl md:text-5xl text-white uppercase mb-6">Page Not Found</h2>
+        <p class="text-text-secondary max-w-md mx-auto mb-10 leading-relaxed">
+          The page you're looking for doesn't exist or has been moved.
+        </p>
+        <a href="index.html" class="inline-flex items-center gap-2 px-8 py-3 rounded-full text-sm font-semibold gradient-orange text-white hover:opacity-90 transition-opacity">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+          </svg>
+          Back to Home
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer id="site-footer" class="border-t border-border mt-8"></footer>
+
+  <!-- Scripts -->
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+  <script defer src="js/supabase-config.js"></script>
+  <script defer src="js/supabase-data.js"></script>
+  <script defer src="js/main.js"></script>
+  <script>
+  document.addEventListener('DOMContentLoaded', async function () {
+    var [profile, socialLinks, pageMeta] = await Promise.all([
+      fetchProfile(),
+      fetchSocialLinks(),
+      fetchSiteMetadata()
+    ]);
+    applySiteMetadata(pageMeta);
+    renderNavbar(profile);
+    renderFooter(profile, socialLinks);
+  });
+  </script>
+
+</body>
+</html>
